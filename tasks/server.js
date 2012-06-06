@@ -83,8 +83,9 @@ module.exports = function(grunt) {
 
     // Ensure all routes go home, client side app..
     site.get("*", function(req, res) {
-      fs.createReadStream(options.index).pipe(res);
-    });
+      res.header("Content-Type", "text/html");
+      fs.createReadStream(options.index).pipe(res);
+    });
 
     // Actually listen
     site.listen(options.port, options.host);
